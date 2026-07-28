@@ -1,0 +1,52 @@
+name: Compilar y Firmar APK (Kinetix) 🚀
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: # Permite compilar manualmente desde la pestaña Actions en GitHub
+
+jobs:
+  build:
+    name: Compilar APK de Lanzamiento
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Descargar Código (Checkout)
+        uses: actions/checkout@v4
+
+      - name: Configurar Java 17 con Caché
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Configurar Gradle y Caché Avanzado
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          cache-read-only: false # Permite escribir y leer de la caché para máxima velocidad
+
+      - name: Decodificar Keystore de Firma
+        run: |
+          echo "${{ secrets.SIGNING_KEY_BASE64 || secrets.RELEASE_KEYSTORE_BASE64 }}" | base64 --decode > app/kinetix_alias_1785257804651.jks
+
+      - name: Compilar APK de Lanzamiento (Release)
+        run: gradle assembleRelease -Pkotlin.compiler.execution.strategy=daemon
+        env:
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || secrets.STORE_PASSWORD }}
+          STORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD || secrets.STORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+      - name: Renombrar APK a Kinetix
+        run: mv app/build/outputs/apk/release/app-release.apk app/build/outputs/apk/release/Kinetix.apk
+
+      - name: Subir APK Compilado como Artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: Kinetix-Release-APK
+          path: app/build/outputs/apk/release/Kinetix.apk
+          if-no-files-found: error
+          retention-days: 7

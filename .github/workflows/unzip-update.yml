@@ -1,0 +1,54 @@
+name: Descomprimir y Actualizar Código 📦
+
+on:
+  push:
+    paths:
+      - 'zip/*.zip'
+      - 'zip/**/*.zip'
+
+permissions:
+  contents: write
+
+jobs:
+  unzip-and-commit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Descomprimir ZIP y reemplazar código
+        run: |
+          # Buscar archivos .zip dentro de la carpeta zip/
+          ZIP_FILE=$(find zip -type f -name "*.zip" | head -n 1)
+
+          if [ -z "$ZIP_FILE" ]; then
+            echo "No se encontró ningún archivo .zip en la carpeta zip/."
+            exit 0
+          fi
+
+          echo "Encontrado: $ZIP_FILE"
+          echo "Descomprimiendo en la raíz del proyecto..."
+
+          # Extraer sobreescribiendo archivos existentes (-o)
+          unzip -o "$ZIP_FILE" -d .
+
+          # Eliminar el archivo .zip procesado
+          rm -f "$ZIP_FILE"
+
+          echo "Descompresión realizada y archivo ZIP eliminado."
+
+      - name: Confirmar y subir cambios a la rama
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add .
+
+          if git diff --staged --quiet; then
+            echo "No hay diferencias ni cambios que guardar."
+          else
+            git commit -m "auto: Código actualizado desde ZIP subido a zip/"
+            git push
+            echo "¡Código actualizado y subido correctamente a la rama!"
+          fi

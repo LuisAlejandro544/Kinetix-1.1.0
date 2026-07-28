@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    
+    <!-- Bottom Diamond (Teal / Blue Gradient) -->
+    <path
+        android:pathData="M50,48 Q54,44 58,48 L74,64 Q78,68 74,72 L58,88 Q54,92 50,88 L34,72 Q30,68 34,64 Z"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="34"
+                android:startY="44"
+                android:endX="78"
+                android:endY="92">
+                <item
+                    android:color="#00F2FE"
+                    android:offset="0.0" />
+                <item
+                    android:color="#005CFF"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Top Diamond (Pink / Orange Gradient with subtle translucency) -->
+    <path
+        android:pathData="M50,20 Q54,16 58,20 L74,36 Q78,40 74,44 L58,60 Q54,64 50,60 L34,44 Q30,40 34,36 Z"
+        android:fillAlpha="0.92"
+        android:strokeWidth="1"
+        android:strokeColor="#00000000">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:type="linear"
+                android:startX="34"
+                android:startY="16"
+                android:endX="78"
+                android:endY="64">
+                <item
+                    android:color="#FF0844"
+                    android:offset="0.0" />
+                <item
+                    android:color="#FFB199"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Pre-Alpha circular badge at bottom-right (center 80, 80, radius 14) -->
+    <path
+        android:pathData="M 80,66 A 14,14 0 1,1 79.9,66 Z"
+        android:fillColor="#FF2D55" />
+    <path
+        android:pathData="M 80,66 A 14,14 0 1,1 79.9,66 Z"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="1.5"
+        android:fillColor="#00000000" />
+    <!-- Stylized capital letter 'A' for Alpha inside the badge -->
+    <path
+        android:pathData="M 75.5,84.5 L 80,73.5 L 84.5,84.5 M 77,80.5 L 83,80.5"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round" />
+</vector>

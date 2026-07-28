@@ -1,0 +1,8 @@
+{
+  "name": "Kinetix",
+  "description": "Automatización de tareas complejas en Android con una interfaz intuitiva y eficiente.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
