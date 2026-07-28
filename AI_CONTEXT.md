@@ -59,6 +59,7 @@ Si vas a agregar una nueva acción al proyecto, debes:
 | `BACKGROUND_CAMERA_CAPTURE` | `cameraType` ("BACK", "FRONT") | La ruta del archivo JPG resultante de la foto. | Captura fotos silenciosamente en segundo plano sin mostrar ninguna interfaz visual. |
 | `SIMULATE_GESTURES` | `gestureType` ("TAP", "SWIPE"), `x1`, `y1`, `x2`, `y2`, `duration` | El valor de entrada previo. | Simula toques o deslizamientos en coordenadas exactas de la pantalla usando accesibilidad local. |
 | `CLIPBOARD_SILENT` | `operation` ("WRITE", "READ"), `text` (permite `${input}`) | El texto copiado o extraído. | Realiza lecturas o escrituras silenciosas al portapapeles del sistema para integraciones de texto. |
+| `HTTP_REQUEST`     | `url`, `method` ("GET", "POST", "PUT", "DELETE", "PATCH"), `headers`, `body`, `timeout` | La respuesta enviada por el servidor o Webhook. | Ejecuta solicitudes HTTP / Webhooks asíncronas para conectar con servidores o servicios REST. |
 
 ---
 
@@ -73,6 +74,7 @@ El sistema soporta disparadores en segundo plano gestionados de forma unificada 
   - `RISES_ABOVE` (Mayor): Se activa cuando la batería sube por encima del nivel establecido.
 - **Disparador por Cargador**: Registra eventos al conectar/desconectar el cable de corriente (`ACTION_POWER_CONNECTED` / `ACTION_POWER_DISCONNECTED`). Activa atajos de manera automatizada.
 - **Disparador por Auriculares**: Detecta la conexión o desconexión de auriculares físicos con cable (`ACTION_HEADSET_PLUG`).
+- **Disparador por Horario / Alarma (`ScheduleTriggerManager`)**: Programa alarmas exactas con `AlarmManager` (`setExactAndAllowWhileIdle`) ejecutando atajos a una hora fija (`HH:mm`) y días seleccionados (`ScheduleAlarmReceiver`). Se resincroniza automáticamente al reiniciar el sistema.
 
 ## 📁 Registro de Eventos e Interrupción de Hilos (`FileLogManager`)
 

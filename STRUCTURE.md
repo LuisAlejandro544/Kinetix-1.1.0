@@ -54,6 +54,8 @@ A continuación, se detalla la distribución de los componentes clave dentro del
 │   │   │   ├── ShortcutAccessibilityService.kt # Servicio de accesibilidad para la inyección de comandos del sistema y gestos táctiles.
 │   │   │   ├── ShortcutExecutionCallbacks.kt# Interfaz desacoplada para redirigir eventos de progreso, diálogos asíncronos y consola flotante.
 │   │   │   ├── SystemTriggerManager.kt      # Receptor de batería, cargador y auriculares adaptado para APIs de Android modernas.
+│   │   │   ├── ScheduleTriggerManager.kt    # Programador de alarmas y cron local basado en AlarmManager para ejecución desatendida.
+│   │   │   ├── ScheduleAlarmReceiver.kt     # BroadcastReceiver nativo que captura las alarmas activadas por el sistema.
 │   │   │   ├── BackgroundTriggerReceiver.kt # Receptor estático ligero para eventos de cargador en segundo plano.
 │   │   │   ├── ChargerTriggerHandler.kt     # Procesador modular de eventos de cargador desatendidos.
 │   │   │   ├── BackgroundExecutor.kt        # Ejecutor de atajos desatendidos en segundo plano.
@@ -100,14 +102,14 @@ A continuación, se detalla la distribución de los componentes clave dentro del
 │   │       ├── DialogStates.kt              # Modelos de estado reactivo de diálogos de ejecución.
 │   │       │
 │   │       ├── components/                  # --- COMPONENTES COMUNES Y REUTILIZABLES ---
-│   │       │   ├── ActionListItem.kt        # Item visual de acción de un atajo dentro del editor.
+│   │       │   ├── ActionListItem.kt        # Item visual de acción de un atajo dentro del editor con controlador DragHandle.
 │   │       │   ├── ActionPickerDial.kt      # Selector circular animado de categorías de automatizaciones.
 │   │       │   ├── AppPickerDialog.kt       # Cuadro de diálogo para la selección dinámica de aplicaciones instaladas.
 │   │       │   ├── ConsoleDrawer.kt         # Consola de logs superpuesta sobre la pantalla de ejecución.
 │   │       │   ├── DynamicActionInputs.kt   # Formularios reactivos dinámicos para los parámetros de cada acción.
 │   │       │   ├── IconMapper.kt            # Utilidad estática que traduce cadenas a iconos vectoriales de Material Design.
 │   │       │   ├── ShortcutGridItem.kt      # Item visual de la rejilla principal de atajos.
-│   │       │   └── ShortcutIdentityCard.kt  # Tarjeta de metadatos del atajo.
+│   │       │   └── ShortcutIdentityCard.kt  # Tarjeta de metadatos del atajo con soporte para disparador por horario.
 │   │       │
 │   │       ├── navigation/                  # --- MÓDULO DE NAVEGACIÓN ---
 │   │       │   └── AppNavigation.kt         # Gestor centralizado de enrutamiento y transiciones de pantalla con Jetpack Compose.

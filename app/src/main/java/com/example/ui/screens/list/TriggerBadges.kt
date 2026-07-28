@@ -7,6 +7,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BatteryChargingFull
 import androidx.compose.material.icons.filled.Headphones
 import androidx.compose.material.icons.filled.Power
+import androidx.compose.material.icons.filled.Schedule
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -92,6 +93,29 @@ fun TriggerBadges(
                 Spacer(modifier = Modifier.width(3.dp))
                 Text(
                     text = if (shortcut.triggerHeadphonesType == "CONNECTED") "Auric. Con" else "Auric. Des",
+                    color = Color.White,
+                    fontSize = 10.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+        if (shortcut.isScheduleTriggerEnabled && !shortcut.triggerScheduleTime.isNullOrBlank()) {
+            Row(
+                modifier = Modifier
+                    .clip(RoundedCornerShape(8.dp))
+                    .background(Color.Black.copy(alpha = 0.6f))
+                    .padding(horizontal = 6.dp, vertical = 2.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Schedule,
+                    contentDescription = "Automatización por horario activada",
+                    tint = Color(0xFFA78BFA),
+                    modifier = Modifier.size(11.dp)
+                )
+                Spacer(modifier = Modifier.width(3.dp))
+                Text(
+                    text = shortcut.triggerScheduleTime ?: "08:30",
                     color = Color.White,
                     fontSize = 10.sp,
                     fontWeight = FontWeight.Bold

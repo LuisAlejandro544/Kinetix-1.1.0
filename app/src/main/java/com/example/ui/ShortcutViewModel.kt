@@ -138,10 +138,17 @@ class ShortcutViewModel @JvmOverloads constructor(
 
     fun saveShortcut(shortcut: Shortcut) {
         viewModelScope.launch(Dispatchers.IO) {
-            if (shortcut.id == 0) {
-                repository.insertShortcut(shortcut)
+            val savedId = if (shortcut.id == 0) {
+                repository.insertShortcut(shortcut).toInt()
             } else {
                 repository.updateShortcut(shortcut)
+                shortcut.id
+            }
+            val finalShortcut = shortcut.copy(id = savedId)
+            if (finalShortcut.isScheduleTriggerEnabled) {
+                com.example.executor.ScheduleTriggerManager.scheduleShortcutAlarm(getApplication(), finalShortcut)
+            } else {
+                com.example.executor.ScheduleTriggerManager.cancelShortcutAlarm(getApplication(), finalShortcut.id)
             }
         }
     }
@@ -149,6 +156,7 @@ class ShortcutViewModel @JvmOverloads constructor(
     fun deleteShortcut(shortcut: Shortcut) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.deleteShortcut(shortcut)
+            com.example.executor.ScheduleTriggerManager.cancelShortcutAlarm(getApplication(), shortcut.id)
             if (selectedShortcut?.id == shortcut.id) {
                 selectedShortcut = null
             }

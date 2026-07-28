@@ -1,15 +1,17 @@
 package com.example.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.gestures.detectDragGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -24,8 +26,11 @@ fun ActionListItem(
     onUpdateParams: (Map<String, String>) -> Unit,
     onDelete: () -> Unit,
     onMoveUp: () -> Unit,
-    onMoveDown: () -> Unit
+    onMoveDown: () -> Unit,
+    onSwap: (fromIndex: Int, toIndex: Int) -> Unit = { _, _ -> }
 ) {
+    var offsetY by remember { mutableFloatStateOf(0f) }
+
     Card(
         modifier = Modifier
             .fillMaxWidth()
@@ -38,6 +43,35 @@ fun ActionListItem(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                // Drag Handle
+                Icon(
+                    imageVector = Icons.Default.DragHandle,
+                    contentDescription = "Arrastrar para reordenar paso",
+                    tint = MaterialTheme.colorScheme.outline,
+                    modifier = Modifier
+                        .size(24.dp)
+                        .testTag("drag_handle_$index")
+                        .pointerInput(index, totalCount) {
+                            detectDragGestures(
+                                onDragStart = { offsetY = 0f },
+                                onDragEnd = { offsetY = 0f },
+                                onDragCancel = { offsetY = 0f },
+                                onDrag = { change, dragAmount ->
+                                    change.consume()
+                                    offsetY += dragAmount.y
+                                    if (offsetY < -60f && index > 0) {
+                                        onSwap(index, index - 1)
+                                        offsetY = 0f
+                                    } else if (offsetY > 60f && index < totalCount - 1) {
+                                        onSwap(index, index + 1)
+                                        offsetY = 0f
+                                    }
+                                }
+                            )
+                        }
+                )
+                Spacer(modifier = Modifier.width(6.dp))
+
                 // Number Circle Badge
                 Box(
                     modifier = Modifier

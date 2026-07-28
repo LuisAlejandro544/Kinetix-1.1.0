@@ -41,6 +41,7 @@ fun ActionType.getCategory(): ActionCategory {
 
         ActionType.EXEC_JAVASCRIPT,
         ActionType.TERMUX_COMMAND,
-        ActionType.CUSTOM_CODE -> ActionCategory.DEVELOPER
+        ActionType.CUSTOM_CODE,
+        ActionType.HTTP_REQUEST -> ActionCategory.DEVELOPER
     }
 }

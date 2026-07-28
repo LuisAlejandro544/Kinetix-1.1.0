@@ -19,5 +19,8 @@ data class Shortcut(
     val isChargerTriggerEnabled: Boolean = false,
     val triggerChargerType: String? = null, // "CONNECTED", "DISCONNECTED"
     val isHeadphonesTriggerEnabled: Boolean = false,
-    val triggerHeadphonesType: String? = null // "CONNECTED", "DISCONNECTED"
+    val triggerHeadphonesType: String? = null, // "CONNECTED", "DISCONNECTED"
+    val isScheduleTriggerEnabled: Boolean = false,
+    val triggerScheduleTime: String? = null, // "08:30"
+    val triggerScheduleDays: String? = null // "DAILY", "MON,TUE,WED,THU,FRI", etc.
 )

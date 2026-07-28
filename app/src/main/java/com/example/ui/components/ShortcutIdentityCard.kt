@@ -35,6 +35,12 @@ fun ShortcutIdentityCard(
     onHeadphonesTriggerEnabledChange: (Boolean) -> Unit,
     triggerHeadphonesType: String,
     onHeadphonesTypeChange: (String) -> Unit,
+    isScheduleTriggerEnabled: Boolean = false,
+    onScheduleTriggerEnabledChange: (Boolean) -> Unit = {},
+    triggerScheduleTime: String = "08:30",
+    onScheduleTimeChange: (String) -> Unit = {},
+    triggerScheduleDays: String = "DAILY",
+    onScheduleDaysChange: (String) -> Unit = {},
     colorPalette: List<String>,
     iconPalette: List<String>
 ) {
@@ -117,6 +123,16 @@ fun ShortcutIdentityCard(
                 onHeadphonesTriggerEnabledChange = onHeadphonesTriggerEnabledChange,
                 triggerHeadphonesType = triggerHeadphonesType,
                 onHeadphonesTypeChange = onHeadphonesTypeChange
+            )
+
+            // Schedule Trigger Section
+            ScheduleTriggerSection(
+                isScheduleTriggerEnabled = isScheduleTriggerEnabled,
+                onScheduleTriggerEnabledChange = onScheduleTriggerEnabledChange,
+                triggerScheduleTime = triggerScheduleTime,
+                onScheduleTimeChange = onScheduleTimeChange,
+                triggerScheduleDays = triggerScheduleDays,
+                onScheduleDaysChange = onScheduleDaysChange
             )
         }
     }

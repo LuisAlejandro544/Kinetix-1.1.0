@@ -65,6 +65,10 @@ fun ShortcutEditorScreen(
     var isHeadphonesTriggerEnabled by remember { mutableStateOf(draftShortcut.isHeadphonesTriggerEnabled) }
     var triggerHeadphonesType by remember { mutableStateOf(draftShortcut.triggerHeadphonesType ?: "CONNECTED") }
 
+    var isScheduleTriggerEnabled by remember { mutableStateOf(draftShortcut.isScheduleTriggerEnabled) }
+    var triggerScheduleTime by remember { mutableStateOf(draftShortcut.triggerScheduleTime ?: "08:30") }
+    var triggerScheduleDays by remember { mutableStateOf(draftShortcut.triggerScheduleDays ?: "DAILY") }
+
     var showActionPickerSheet by remember { mutableStateOf(false) }
 
     val colorPalette = EditorPalettes.colorPalette
@@ -86,6 +90,9 @@ fun ShortcutEditorScreen(
                 triggerChargerType = triggerChargerType,
                 isHeadphonesTriggerEnabled = isHeadphonesTriggerEnabled,
                 triggerHeadphonesType = triggerHeadphonesType,
+                isScheduleTriggerEnabled = isScheduleTriggerEnabled,
+                triggerScheduleTime = triggerScheduleTime,
+                triggerScheduleDays = triggerScheduleDays,
                 draftShortcut = draftShortcut,
                 viewModel = viewModel,
                 onNavigateBack = onNavigateBack
@@ -141,6 +148,12 @@ fun ShortcutEditorScreen(
                         onHeadphonesTriggerEnabledChange = { isHeadphonesTriggerEnabled = it },
                         triggerHeadphonesType = triggerHeadphonesType,
                         onHeadphonesTypeChange = { triggerHeadphonesType = it },
+                        isScheduleTriggerEnabled = isScheduleTriggerEnabled,
+                        onScheduleTriggerEnabledChange = { isScheduleTriggerEnabled = it },
+                        triggerScheduleTime = triggerScheduleTime,
+                        onScheduleTimeChange = { triggerScheduleTime = it },
+                        triggerScheduleDays = triggerScheduleDays,
+                        onScheduleDaysChange = { triggerScheduleDays = it },
                         colorPalette = colorPalette,
                         iconPalette = iconPalette
                     )

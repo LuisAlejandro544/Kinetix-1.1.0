@@ -32,7 +32,8 @@ fun getCategoryForAction(type: ActionType): String {
         ActionType.EXEC_JAVASCRIPT,
         ActionType.CUSTOM_CODE,
         ActionType.TERMUX_COMMAND,
-        ActionType.BACKGROUND_CAMERA_CAPTURE -> "Lógica y Código"
+        ActionType.BACKGROUND_CAMERA_CAPTURE,
+        ActionType.HTTP_REQUEST -> "Lógica y Código"
     }
 }
 

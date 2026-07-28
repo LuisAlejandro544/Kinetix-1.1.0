@@ -37,5 +37,6 @@ fun DynamicActionInputs(
         ActionType.BACKGROUND_CAMERA_CAPTURE -> BackgroundCameraCaptureInput(params, onParamsChanged)
         ActionType.SIMULATE_GESTURES -> SimulateGesturesInput(params, onParamsChanged)
         ActionType.CLIPBOARD_SILENT -> ClipboardSilentInput(params, onParamsChanged)
+        ActionType.HTTP_REQUEST -> HttpRequestInput(params, onParamsChanged)
     }
 }

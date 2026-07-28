@@ -126,3 +126,70 @@ fun CustomCodeInput(
         }
     }
 }
+
+@Composable
+fun HttpRequestInput(
+    params: Map<String, String>,
+    onParamsChanged: (Map<String, String>) -> Unit
+) {
+    val url = params["url"] ?: "https://httpbin.org/get"
+    val method = params["method"] ?: "GET"
+    val headers = params["headers"] ?: "Content-Type: application/json"
+    val body = params["body"] ?: ""
+    val timeout = params["timeout"] ?: "10"
+
+    val methods = listOf("GET", "POST", "PUT", "DELETE", "PATCH")
+
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text("Método HTTP", style = MaterialTheme.typography.labelMedium, fontWeight = FontWeight.Bold)
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            methods.forEach { item ->
+                FilterChip(
+                    selected = method == item,
+                    onClick = { onParamsChanged(params + ("method" to item)) },
+                    label = { Text(item, fontSize = 11.sp, fontWeight = FontWeight.Bold) }
+                )
+            }
+        }
+
+        OutlinedTextField(
+            value = url,
+            onValueChange = { onParamsChanged(params + ("url" to it)) },
+            label = { Text("URL de la API / Webhook") },
+            placeholder = { Text("https://api.ejemplo.com/v1/webhook") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+
+        OutlinedTextField(
+            value = headers,
+            onValueChange = { onParamsChanged(params + ("headers" to it)) },
+            label = { Text("Cabeceras (Headers) - Clave: Valor") },
+            placeholder = { Text("Content-Type: application/json\nAuthorization: Bearer mi_token") },
+            modifier = Modifier.fillMaxWidth().height(90.dp),
+            singleLine = false
+        )
+
+        if (method in listOf("POST", "PUT", "PATCH", "DELETE")) {
+            OutlinedTextField(
+                value = body,
+                onValueChange = { onParamsChanged(params + ("body" to it)) },
+                label = { Text("Cuerpo (Body JSON/Texto)") },
+                placeholder = { Text("{\"mensaje\": \"{resultado}\"}") },
+                modifier = Modifier.fillMaxWidth().height(100.dp),
+                singleLine = false
+            )
+        }
+
+        OutlinedTextField(
+            value = timeout,
+            onValueChange = { onParamsChanged(params + ("timeout" to it)) },
+            label = { Text("Tiempo de espera (Segundos)") },
+            modifier = Modifier.fillMaxWidth(),
+            singleLine = true
+        )
+    }
+}

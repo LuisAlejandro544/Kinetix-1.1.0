@@ -43,9 +43,9 @@ Este documento detalla el plan de evolución del proyecto, dividido en fases de 
 - [x] **Acción: Ejecutar Fragmento JavaScript (QuickJS)**: Ejecución local súper rápida con paso de datos de variables.
 - [ ] **Acción: Ejecutar Script Lua (LuaJ)**: Ofrecer ejecución segura y liviana de scripts Lua para usuarios avanzados.
 - [ ] **Acción: Esperar Tiempo (Retraso)**: Agregar la acción "Delay / Sleep" para pausar el flujo de ejecución durante N segundos entre pasos.
-- [ ] **Acción: Ejecutar URL / Llamada HTTP**: Permitir realizar peticiones GET/POST a URLs externas (útil para integraciones con Webhooks de domótica, IFTTT, o Make).
+- [x] **Acción: Ejecutar URL / Llamada HTTP**: Permitir realizar peticiones GET/POST a URLs externas (útil para integraciones con Webhooks de domótica, IFTTT, o Make).
 - [ ] **Acción: Estado de Conexión**: Consultar si el dispositivo está conectado a una red Wi-Fi específica o datos móviles para condicionar pasos.
-- [ ] **Mejora del Editor**: Añadir la capacidad de reordenar acciones existentes en el editor arrastrándolas (Drag-and-Drop) en lugar de eliminarlas y recrearlas.
+- [x] **Mejora del Editor**: Añadir la capacidad de reordenar acciones existentes en el editor arrastrándolas (Drag-and-Drop) en lugar de eliminarlas y recrearlas.
 - [ ] **Validación de Tipos de Entrada**: Verificar si el resultado anterior es un número antes de intentar una operación matemática, arrojando advertencias visuales amigables si hay incompatibilidad de tipos.
 
 ---
@@ -63,9 +63,9 @@ Este documento detalla el plan de evolución del proyecto, dividido en fases de 
   - [x] **Bajar calidad gráfica**: Reducción dinámica de degradados y transparencias pesadas para optimizar el rendimiento.
   - [x] **Consola de Logs de Diagnóstico**: Acceso nativo y visual a los archivos de logs de warning y crashes persistidos localmente en `Android/data/`.
 - [ ] **Widgets del Launcher**: Permitir a los usuarios crear accesos directos o botones rápidos en la pantalla de inicio de Android para ejecutar un atajo específico con un solo toque.
-- [ ] **Automatizaciones por Eventos adicionales (Wi-Fi, Bluetooth, Alarma)**:
+- [ ] **Automatizaciones por Eventos adicionales (Wi-Fi, Bluetooth)**:
   - Ejecutar un atajo cuando el dispositivo se conecte a una red Wi-Fi o Bluetooth específica.
-  - Ejecutar un atajo a una hora exacta todos los días (Alarm/Cron local).
+- [x] **Programación por Horario / Alarmas (Cron Local)**: Ejecutar un atajo a una hora exacta todos los días o días seleccionados (`ScheduleTriggerManager`).
 - [ ] **Llamada a APIs de IA**: Integración segura de la Gemini API mediante variables de entorno para procesar, categorizar o resumir textos usando Inteligencia Artificial dentro de las acciones de un atajo.
 
 ---

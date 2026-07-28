@@ -78,6 +78,15 @@ fun ActionSequenceSection(
                                     onActionsListChange(list)
                                 }
                             }
+                        },
+                        onSwap = { fromIndex, toIndex ->
+                            val list = actionsList.toMutableList()
+                            if (fromIndex in list.indices && toIndex in list.indices) {
+                                val temp = list[fromIndex]
+                                list[fromIndex] = list[toIndex]
+                                list[toIndex] = temp
+                                onActionsListChange(list)
+                            }
                         }
                     )
                 }

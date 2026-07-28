@@ -31,7 +31,8 @@ enum class ActionType {
     CUSTOM_CODE,
     BACKGROUND_CAMERA_CAPTURE,
     SIMULATE_GESTURES,
-    CLIPBOARD_SILENT;
+    CLIPBOARD_SILENT,
+    HTTP_REQUEST;
 
     val displayName: String
         get() = when (this) {
@@ -61,6 +62,7 @@ enum class ActionType {
             BACKGROUND_CAMERA_CAPTURE -> "Capturar foto de cámara"
             SIMULATE_GESTURES -> "Simular toque/desplazamiento"
             CLIPBOARD_SILENT -> "Portapapeles silencioso"
+            HTTP_REQUEST -> "Petición HTTP / Webhook"
         }
 
     val icon: ImageVector
@@ -91,6 +93,7 @@ enum class ActionType {
             BACKGROUND_CAMERA_CAPTURE -> Icons.Default.PhotoCamera
             SIMULATE_GESTURES -> Icons.Default.TouchApp
             CLIPBOARD_SILENT -> Icons.Default.ContentPaste
+            HTTP_REQUEST -> Icons.Default.CloudSync
         }
 
     val description: String
@@ -121,6 +124,7 @@ enum class ActionType {
             BACKGROUND_CAMERA_CAPTURE -> "Captura una foto de la cámara frontal o trasera en segundo plano de manera silenciosa."
             SIMULATE_GESTURES -> "Simula un toque o deslizamiento (swipe) en coordenadas específicas de la pantalla."
             CLIPBOARD_SILENT -> "Lee o escribe texto en el portapapeles del sistema de manera silenciosa."
+            HTTP_REQUEST -> "Realiza solicitudes HTTP (GET, POST, PUT, DELETE, PATCH) con cabeceras y cuerpo personalizables a APIs o webhooks."
         }
 
     val defaultParams: Map<String, String>
@@ -151,6 +155,7 @@ enum class ActionType {
             BACKGROUND_CAMERA_CAPTURE -> mapOf("cameraType" to "BACK")
             SIMULATE_GESTURES -> mapOf("gestureType" to "TAP", "x1" to "500", "y1" to "1000", "x2" to "500", "y2" to "500", "duration" to "300")
             CLIPBOARD_SILENT -> mapOf("operation" to "WRITE", "text" to "{resultado}")
+            HTTP_REQUEST -> mapOf("url" to "https://httpbin.org/get", "method" to "GET", "headers" to "Content-Type: application/json", "body" to "", "timeout" to "10")
         }
 
     companion object {

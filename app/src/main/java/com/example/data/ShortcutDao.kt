@@ -14,6 +14,9 @@ interface ShortcutDao {
     @Query("SELECT * FROM shortcuts WHERE id = :id")
     fun getShortcutById(id: Int): Flow<Shortcut?>
 
+    @Query("SELECT * FROM shortcuts WHERE id = :id")
+    suspend fun getShortcutByIdSync(id: Int): Shortcut?
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertShortcut(shortcut: Shortcut): Long
 

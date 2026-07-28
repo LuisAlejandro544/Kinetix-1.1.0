@@ -4,6 +4,24 @@ Todos los cambios notables en esta actualización de Kinetix se detallan a conti
 
 ---
 
+## [v1.1.0] - Petición HTTP / Webhooks, Programación por Horario y Reordenamiento Drag-and-Drop
+
+### 🌐 Acción de Peticiones HTTP y Webhooks (`HTTP_REQUEST`)
+* **Integración Web & API:** Implementamos la nueva acción `HTTP_REQUEST` con la estrategia `HttpRequestStrategy`. Soporta métodos HTTP clave (`GET`, `POST`, `PUT`, `DELETE`, `PATCH`), cabeceras personalizadas en formato `Clave: Valor`, cuerpo de petición dinámico con soporte para `{resultado}` / `${input}`, y tiempo de espera configurable.
+* **Integración de UI (`HttpRequestInput`):** Formulario especializado dentro del editor de acciones para configurar URLs, métodos, cabeceras, cuerpo JSON/texto y tiempos de respuesta.
+
+### ⏰ Programación por Horario / Alarmas (Cron Local)
+* **Disparador Programado (`ScheduleTriggerSection`):** Nueva sección de automatización en la tarjeta de identidad que permite programar la ejecución automática de atajos a una hora fija (formato 24h `HH:mm`) y días específicos de la semana (`L, M, X, J, V, S, D` o `DAILY`).
+* **Motor de Alarmas (`ScheduleTriggerManager` & `ScheduleAlarmReceiver`):** Gestor nativo basado en `AlarmManager` (`setExactAndAllowWhileIdle`) que calcula el próximo momento de activación, maneja reintentos de ciclo semanal y ejecuta atajos desatendidos mediante `BackgroundExecutor`.
+* **Sincronización en Inicio de Sistema:** `BootCompletedReceiver` resincroniza automáticamente las alarmas programadas al encender o reiniciar el dispositivo.
+* **Insignia Visual en Tarjetas:** Las tarjetas principales exhiben la insignia morada de hora programada (`TriggerBadges`).
+
+### 🖐️ Reordenamiento Drag-and-Drop en el Editor
+* **Controlador de Arrastre (`DragHandle`):** Agregamos un tirador táctil de arrastre en la cabecera de cada tarjeta de acción (`ActionListItem`).
+* **Gestos Táctiles Reactivos (`detectDragGestures`):** Permite reordenar visualmente las acciones deslizándolas hacia arriba o abajo en lugar de eliminarlas o usar únicamente los botones manuales.
+
+---
+
 ## [v1.3.0] - Selector de Voces y Motores Locales con Previsualización Interactiva
 
 ### 🗣️ Selector de Motores y Voces Locales para TTS
