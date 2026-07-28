@@ -90,8 +90,10 @@ El sistema soporta disparadores en segundo plano gestionados de forma unificada 
 - **Fondo con Imagen de Galería**: Los atajos soportan una imagen de fondo personalizada cargada desde la galería del dispositivo (`customPhotoUri`). Se renderiza usando Coil con un filtro oscuro translúcido para mantener una legibilidad de contraste de texto de nivel de producción (> 4.5:1).
 - **Opción de Calidad Gráfica Baja**: Si `viewModel.isLowGraphicsQuality` está activo, la interfaz de usuario de Kinetix desactiva de inmediato todas las cargas en memoria de imágenes pesadas (`customPhotoUri`) en la lista de atajos y reemplaza degradados con pinceles de degradado de color dinámico por colores de fondo planos y de alto rendimiento. Esto garantiza la máxima estabilidad táctil en terminales con recursos de hardware muy limitados.
 
-## ⚖️ Gestión de Licencias y Atribuciones de Terceros (Obligatorio)
+## ⚖️ Gestión de Licencias, Propiedad y Contribuciones
 
+- **Licencia del Repositorio**: El proyecto está bajo la **PolyForm Noncommercial License 1.0.0** (`LICENSE`). Prohibido cualquier uso o distribución comercial.
+- **Sin Contribuciones de Terceros**: No se aceptan Pull Requests ni contribuciones de terceros. El proyecto es gestionado únicamente de forma privada por el autor original.
 - **Registro de Licencias de Recursos de Audio o Externos**:
   - Si un sonido u otro recurso integrado en el proyecto tiene una licencia que exige dar créditos obligatorios de atribución (por ejemplo, **Creative Commons Attribution 4.0 - CC BY 4.0**), es **estrictamente obligatorio** añadir su respectiva atribución y enlace original en el apartado especial de la pantalla de Ajustes (`SettingsScreen.kt` a través de `ThirdPartyLicensesCard.kt`).
   - Esto garantiza el cumplimiento de la propiedad intelectual de terceros de forma pública y visible dentro de la app sin importar que el repositorio del proyecto sea privado o la app esté compilada para uso cerrado.

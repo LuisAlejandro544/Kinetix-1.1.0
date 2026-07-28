@@ -92,6 +92,7 @@ El proyecto utiliza variables de entorno declaradas a través de archivos `.env`
 
 ---
 
-## 🤝 Contribución y Roadmap
+## 📜 Licencia y Contribuciones
 
-Si deseas contribuir con nuevas funcionalidades o conocer el futuro del proyecto, consulta el documento [ROADMAP.md](./ROADMAP.md) para explorar las tareas planificadas.
+- **Licencia**: Este proyecto está protegido bajo la **PolyForm Noncommercial License 1.0.0** (ver archivo [`LICENSE`](./LICENSE)). Queda estrictamente prohibido cualquier uso, distribución o derivación con fines comerciales o de lucro financiero.
+- **Contribuciones de Terceros**: **No se aceptan contribuciones ni Pull Requests de terceros**. El desarrollo, evolución y mantenimiento de este software se realizan de forma totalmente privada e individual por el autor original. Para conocer la planificación interna del proyecto, consulta el documento [ROADMAP.md](./ROADMAP.md).

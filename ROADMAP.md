@@ -2,6 +2,8 @@
 
 Este documento detalla el plan de evolución del proyecto, dividido en fases de desarrollo a corto, mediano y largo plazo. Las metas están orientadas a potenciar las automatizaciones, mejorar la integración con el sistema operativo y enriquecer la experiencia de usuario.
 
+> 🔒 **Nota sobre Licencia y Contribuciones**: Este proyecto se rige por la **PolyForm Noncommercial License 1.0.0** (uso estrictamente no comercial). **No se aceptan contribuciones de código ni Pull Requests de terceros**. Esta hoja de ruta es únicamente de carácter informativo para el seguimiento interno del autor original.
+
 ---
 
 ## 📌 Estado Actual (Fase 1: Base Sólida y UX Fluida) ✅
