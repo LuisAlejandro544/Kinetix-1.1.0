@@ -8,6 +8,7 @@ on:
 
 permissions:
   contents: write
+  workflows: write
 
 jobs:
   unzip-and-commit:
@@ -30,8 +31,8 @@ jobs:
           echo "Encontrado: $ZIP_FILE"
           echo "Descomprimiendo en la raíz del proyecto..."
 
-          # Extraer sobreescribiendo archivos existentes (-o)
-          unzip -o "$ZIP_FILE" -d .
+          # Extraer sobreescribiendo archivos existentes (-o), excluyendo .github para no modificar workflows
+          unzip -o "$ZIP_FILE" -d . -x ".github/*"
 
           # Eliminar el archivo .zip procesado
           rm -f "$ZIP_FILE"
@@ -42,6 +43,9 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Asegurar que los workflows de GitHub Actions no sufran modificaciones accidentales
+          git checkout HEAD -- .github/ 2>/dev/null || true
 
           git add .
 
