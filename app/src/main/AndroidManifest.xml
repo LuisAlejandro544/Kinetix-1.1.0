@@ -15,6 +15,7 @@
     <uses-permission android:name="com.termux.permission.RUN_COMMAND" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:maxSdkVersion="28" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <attribution
         android:tag="default"
@@ -60,6 +61,34 @@
                 android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
                 android:value="Ejecución continua de automatizaciones y disparadores en segundo plano" />
         </service>
+
+        <service
+            android:name=".executor.AssistiveTouchService"
+            android:enabled="true"
+            android:exported="false" />
+
+        <service
+            android:name=".executor.KinetixNotificationListenerService"
+            android:label="Kinetix Lector de Notificaciones"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService" />
+            </intent-filter>
+        </service>
+
+        <receiver
+            android:name="com.example.widget.KinetixWidgetProvider"
+            android:exported="true"
+            android:label="Kinetix Atajos Rapidos">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="com.example.kinetix.ACTION_EXECUTE_WIDGET_SHORTCUT" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/kinetix_widget_info" />
+        </receiver>
 
         <receiver
             android:name=".executor.BootCompletedReceiver"

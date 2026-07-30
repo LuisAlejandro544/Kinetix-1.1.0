@@ -1,5 +1,8 @@
 package com.example.ui.screens.identity
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.border
@@ -13,22 +16,28 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import java.io.File
+import java.io.FileOutputStream
 
 @Composable
 fun CustomPhotoSection(
     customPhotoUri: String?,
     onCustomPhotoUriChange: (String?) -> Unit
 ) {
+    val context = LocalContext.current
+
     val photoPickerLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri ->
         if (uri != null) {
-            onCustomPhotoUriChange(uri.toString())
+            val persistentUri = copyImageToInternalStorage(context, uri)
+            onCustomPhotoUriChange(persistentUri ?: uri.toString())
         }
     }
 
@@ -96,5 +105,28 @@ fun CustomPhotoSection(
                 Text("Seleccionar Imagen de Galería", fontSize = 13.sp, fontWeight = FontWeight.Bold)
             }
         }
+    }
+}
+
+private fun copyImageToInternalStorage(context: Context, uri: Uri): String? {
+    return try {
+        try {
+            context.contentResolver.takePersistableUriPermission(
+                uri,
+                Intent.FLAG_GRANT_READ_URI_PERMISSION
+            )
+        } catch (_: Exception) {}
+
+        val photosDir = File(context.filesDir, "shortcut_photos").apply { if (!exists()) mkdirs() }
+        val newFile = File(photosDir, "photo_${System.currentTimeMillis()}.jpg")
+        context.contentResolver.openInputStream(uri)?.use { inputStream ->
+            FileOutputStream(newFile).use { outputStream ->
+                inputStream.copyTo(outputStream)
+            }
+        }
+        Uri.fromFile(newFile).toString()
+    } catch (e: Exception) {
+        e.printStackTrace()
+        null
     }
 }

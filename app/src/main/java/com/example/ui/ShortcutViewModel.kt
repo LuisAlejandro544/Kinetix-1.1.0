@@ -66,6 +66,7 @@ class ShortcutViewModel @JvmOverloads constructor(
         set(value) { executorEngine.showConsole = value }
 
     // Delegated graphics settings from preferencesManager
+    val prefsManager: KinetixPreferencesManager get() = preferencesManager
     val isLowGraphicsQuality: Boolean get() = preferencesManager.isLowGraphicsQuality
 
     fun updateLowGraphicsQuality(enabled: Boolean) {

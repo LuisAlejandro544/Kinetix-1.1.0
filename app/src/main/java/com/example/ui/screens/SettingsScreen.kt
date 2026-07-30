@@ -100,6 +100,20 @@ fun SettingsScreen(
                 )
             }
 
+            // Section 1.2: System Overlays & Triggers
+            item {
+                Text(
+                    "Superposiciones y Servicios del Sistema",
+                    style = MaterialTheme.typography.titleSmall,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+
+                SystemOverlaySettingsCard(viewModel = viewModel)
+            }
+
             // Section 1.5: Third Party Licenses & Attributions
             item {
                 Text(

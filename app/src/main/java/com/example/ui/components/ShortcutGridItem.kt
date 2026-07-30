@@ -46,16 +46,31 @@ fun ShortcutGridItem(
             .fillMaxWidth()
             .height(130.dp)
             .clip(RoundedCornerShape(16.dp))
-            .background(
-                if (shortcut.customPhotoUri != null) Color.Black
-                else baseColor
-            )
+            .background(baseColor)
             .combinedClickable(
                 onClick = onClick,
                 onLongClick = { showDeleteDialog = true }
             )
     ) {
-        // If custom photo is set, load it
+        // Base color gradient background (fallback & underlying canvas)
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(
+                    if (isLowGraphicsQuality) {
+                        androidx.compose.ui.graphics.SolidColor(baseColor)
+                    } else {
+                        Brush.verticalGradient(
+                            colors = listOf(
+                                baseColor,
+                                baseColor.copy(alpha = 0.75f)
+                            )
+                        )
+                    }
+                )
+        )
+
+        // If custom photo is set, load it on top
         if (shortcut.customPhotoUri != null && !isLowGraphicsQuality) {
             AsyncImage(
                 model = shortcut.customPhotoUri,
@@ -63,29 +78,11 @@ fun ShortcutGridItem(
                 contentScale = ContentScale.Crop,
                 modifier = Modifier.fillMaxSize()
             )
-            // Dark overlay for readable contrast
+            // Dark overlay for readable contrast over custom photo
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .background(Color.Black.copy(alpha = 0.45f))
-            )
-        } else {
-            // Gradient background fallback or simple solid color
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        if (isLowGraphicsQuality) {
-                            androidx.compose.ui.graphics.SolidColor(baseColor)
-                        } else {
-                            Brush.verticalGradient(
-                                colors = listOf(
-                                    baseColor,
-                                    baseColor.copy(alpha = 0.75f)
-                                )
-                            )
-                        }
-                    )
             )
         }
 

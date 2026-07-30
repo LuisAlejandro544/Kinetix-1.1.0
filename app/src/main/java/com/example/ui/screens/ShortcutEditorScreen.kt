@@ -69,6 +69,10 @@ fun ShortcutEditorScreen(
     var triggerScheduleTime by remember { mutableStateOf(draftShortcut.triggerScheduleTime ?: "08:30") }
     var triggerScheduleDays by remember { mutableStateOf(draftShortcut.triggerScheduleDays ?: "DAILY") }
 
+    var isNotificationTriggerEnabled by remember { mutableStateOf(draftShortcut.isNotificationTriggerEnabled) }
+    var triggerNotificationApp by remember { mutableStateOf(draftShortcut.triggerNotificationApp ?: "") }
+    var triggerNotificationKeyword by remember { mutableStateOf(draftShortcut.triggerNotificationKeyword ?: "") }
+
     var showActionPickerSheet by remember { mutableStateOf(false) }
 
     val colorPalette = EditorPalettes.colorPalette
@@ -93,6 +97,9 @@ fun ShortcutEditorScreen(
                 isScheduleTriggerEnabled = isScheduleTriggerEnabled,
                 triggerScheduleTime = triggerScheduleTime,
                 triggerScheduleDays = triggerScheduleDays,
+                isNotificationTriggerEnabled = isNotificationTriggerEnabled,
+                triggerNotificationApp = triggerNotificationApp,
+                triggerNotificationKeyword = triggerNotificationKeyword,
                 draftShortcut = draftShortcut,
                 viewModel = viewModel,
                 onNavigateBack = onNavigateBack
@@ -154,6 +161,12 @@ fun ShortcutEditorScreen(
                         onScheduleTimeChange = { triggerScheduleTime = it },
                         triggerScheduleDays = triggerScheduleDays,
                         onScheduleDaysChange = { triggerScheduleDays = it },
+                        isNotificationTriggerEnabled = isNotificationTriggerEnabled,
+                        onNotificationTriggerEnabledChange = { isNotificationTriggerEnabled = it },
+                        triggerNotificationApp = triggerNotificationApp,
+                        onNotificationAppChange = { triggerNotificationApp = it },
+                        triggerNotificationKeyword = triggerNotificationKeyword,
+                        onNotificationKeywordChange = { triggerNotificationKeyword = it },
                         colorPalette = colorPalette,
                         iconPalette = iconPalette
                     )

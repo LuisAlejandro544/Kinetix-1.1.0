@@ -34,6 +34,9 @@ fun EditorTopBar(
     isScheduleTriggerEnabled: Boolean = false,
     triggerScheduleTime: String = "08:30",
     triggerScheduleDays: String = "DAILY",
+    isNotificationTriggerEnabled: Boolean = false,
+    triggerNotificationApp: String = "",
+    triggerNotificationKeyword: String = "",
     draftShortcut: Shortcut,
     viewModel: ShortcutViewModel,
     onNavigateBack: () -> Unit
@@ -66,7 +69,10 @@ fun EditorTopBar(
                         triggerHeadphonesType = triggerHeadphonesType,
                         isScheduleTriggerEnabled = isScheduleTriggerEnabled,
                         triggerScheduleTime = triggerScheduleTime,
-                        triggerScheduleDays = triggerScheduleDays
+                        triggerScheduleDays = triggerScheduleDays,
+                        isNotificationTriggerEnabled = isNotificationTriggerEnabled,
+                        triggerNotificationApp = triggerNotificationApp,
+                        triggerNotificationKeyword = triggerNotificationKeyword
                     )
                     viewModel.saveShortcut(savedShortcut)
                     viewModel.runShortcut(savedShortcut)
@@ -96,7 +102,10 @@ fun EditorTopBar(
                         triggerHeadphonesType = triggerHeadphonesType,
                         isScheduleTriggerEnabled = isScheduleTriggerEnabled,
                         triggerScheduleTime = triggerScheduleTime,
-                        triggerScheduleDays = triggerScheduleDays
+                        triggerScheduleDays = triggerScheduleDays,
+                        isNotificationTriggerEnabled = isNotificationTriggerEnabled,
+                        triggerNotificationApp = triggerNotificationApp,
+                        triggerNotificationKeyword = triggerNotificationKeyword
                     )
                     viewModel.saveShortcut(savedShortcut)
                     onNavigateBack()

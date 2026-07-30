@@ -50,6 +50,8 @@ A continuación, se detalla la distribución de los componentes clave dentro del
 │   │   │   ├── ActionStrategy.kt            # Interfaz base del Patrón Strategy para la ejecución de acciones individuales.
 │   │   │   ├── ActionStrategyRegistry.kt    # Registrador central unificado que expone todas las estrategias disponibles a nivel global.
 │   │   │   ├── KinetixForegroundService.kt  # Servicio Foreground persistente con notificación en segundo plano 24/7.
+│   │   │   ├── KinetixNotificationListenerService.kt # Servicio escuchador de notificaciones entrantes con filtro por app y palabras clave.
+│   │   │   ├── AssistiveTouchService.kt     # Servicio de superposición de botón flotante táctil (SYSTEM_ALERT_WINDOW).
 │   │   │   ├── BootCompletedReceiver.kt     # Receptor estático para arranque de sistema (ACTION_BOOT_COMPLETED).
 │   │   │   ├── ShortcutAccessibilityService.kt # Servicio de accesibilidad para la inyección de comandos del sistema y gestos táctiles.
 │   │   │   ├── ShortcutExecutionCallbacks.kt# Interfaz desacoplada para redirigir eventos de progreso, diálogos asíncronos y consola flotante.
@@ -124,16 +126,33 @@ A continuación, se detalla la distribución de los componentes clave dentro del
 │   │       │   ├── VariablesTutorialScreen.kt # Pantalla de guía interactiva de variables.
 │   │       │   ├── SettingsScreen.kt        # Pantalla de ajustes, diagnósticos y logs.
 │   │       │   │
+│   │       │   ├── onboarding/              # --- PASOS Y SUBCOMPONENTES DE ONBOARDING (MODULARIZADO) ---
+│   │       │   │   ├── WelcomeStep.kt       # Bienvenida principal con tarjeta gráfica de logo.
+│   │       │   │   ├── FeaturesStep.kt      # Resumen de capacidades y tarjeta FeatureItem.
+│   │       │   │   ├── PermissionsStep.kt   # Control de permisos y tarjeta PermissionCard.
+│   │       │   │   ├── OnboardingHeader.kt  # Encabezado modular de bienvenida.
+│   │       │   │   ├── OnboardingStepIndicator.kt # Indicador visual de progreso de pasos.
+│   │       │   │   └── OnboardingNavigationButtons.kt # Botones modulares de navegación.
+│   │       │   │
+│   │       │   ├── tutorial/                # --- PASOS DEL TUTORIAL INTERACTIVO DE VARIABLES (MODULARIZADO) ---
+│   │       │   │   ├── StepIntroduction.kt  # Paso 1: Introducción explicativa del flujo de datos.
+│   │       │   │   ├── StepInteractiveSimulator.kt # Paso 2: Simulador interactivo en vivo con interruptor de enlace.
+│   │       │   │   └── StepAvoidChainingError.kt # Paso 3: Guía visual para evitar errores de encadenamiento.
+│   │       │   │
 │   │       │   ├── list/                    # --- SUBMÓDULO DE LA LISTA DE ATAJOS ---
 │   │       │   │   ├── ShortcutListTopBar.kt # Barra superior modular para ShortcutListScreen.
 │   │       │   │   └── ShortcutListFooter.kt # Pie de página informativo modular.
 │   │       │   │
 │   │       │   ├── settings/                # --- SUBMÓDULO DE AJUSTES Y LOGS ---
 │   │       │   │   ├── SettingsTopBar.kt     # Barra superior modular para SettingsScreen.
+│   │       │   │   ├── SystemOverlaySettingsCard.kt # Control de Botón Flotante y Lector de Notificaciones.
 │   │       │   │   └── EmptyLogCard.kt      # Tarjeta modular de estado vacío de logs de diagnóstico.
 │   │       │   │
 │   │       │   └── inputs/                  # --- FORMULARIOS DE PARÁMETROS DE ACCIÓN (MODULARIZADO) ---
-│   │       │       ├── CommonInputs.kt      # Inputs de texto, alerta y notificaciones.
+│   │       │       ├── SpeakTextInput.kt    # Configuración de voz TTS, motores y previsualización.
+│   │       │       ├── NotificationInputs.kt # Entradas para notificaciones, alertas y compartir texto.
+│   │       │       ├── AudioVisualInputs.kt # Entradas para reproductor de sonido y vibración.
+│   │       │       ├── WebInputs.kt          # Entrada para URLs y enlaces web.
 │   │       │       ├── FileInputs.kt        # Parámetros para operaciones de archivos locales.
 │   │       │       ├── DeveloperInputs.kt   # Entradas para JS y comandos de consola Termux.
 │   │       │       ├── LogicInputs.kt       # Formulario para condicionales.

@@ -4,7 +4,23 @@ Todos los cambios notables en esta actualización de Kinetix se detallan a conti
 
 ---
 
-## [v1.1.0] - Petición HTTP / Webhooks, Programación por Horario y Reordenamiento Drag-and-Drop
+## [v1.1.0] - Widgets, Botón Flotante Assistive Touch, Lector de Notificaciones y Personalización Visual
+
+### 📲 Widgets para la Pantalla de Inicio (Home Screen Widgets)
+* **Acceso Directo desde el Launcher:** Implementamos `KinetixWidgetProvider` basado en `AppWidgetProvider` y `RemoteViews`. Muestra el atajo principal de forma estilizada en la pantalla de inicio de Android y permite ejecutarlo al instante en segundo plano con un toque.
+
+### 🔘 Botón Flotante Assistive Touch (Superposición Overlay)
+* **Burbuja Flotante Táctil (`AssistiveTouchService`):** Creación de un servicio de superposición en pantalla basado en `SYSTEM_ALERT_WINDOW`. El usuario puede activar el botón flotante manualmente desde Ajustes, arrastrarlo por toda la pantalla y tocarlo para desplegar un menú contextual rápido con sus atajos favoritos.
+
+### 🔔 Lector de Notificaciones Entrantes (`KinetixNotificationListenerService`)
+* **Disparador por Notificaciones:** Servicio de escuchador nativo de notificaciones Android (`NotificationListenerService`). Permite iniciar atajos automáticamente al recibir notificaciones de aplicaciones específicas (ej: `com.whatsapp`) o que contengan palabras clave configuradas (ej: "Código", "Urgente", "Batería").
+
+### 🖼️ Persistencia de Imágenes de Fondo y Paleta Visual Extendida
+* **Copias Persistentes en Disco (`shortcut_photos`):** Corregimos la desaparición de fotos personalizadas (`customPhotoUri`) al salir y volver a la app, implementando la copia automática al almacenamiento interno nativo del dispositivo.
+* **Paleta de Colores Extendida:** Se agregaron 9 nuevos colores en la selección de atajos (Emerald, Midnight Navy, Neon Fuchsia, Rose Burgundy, Deep Orange, Warm Mocha, Slate Gray, Deep Teal).
+* **Colección Ampliada de Iconos:** Se integraron 24 nuevos iconos de Material Symbols (`wifi`, `bluetooth`, `settings`, `lock`, `key`, `timer`, `folder`, `flash`, `download`, `cloud`, `shield`, `terminal`, `power`, `palette`, `mic`, `globe`, `heart`, `bolt`, `notifications`, `brightness`, `build`, `game`, `movie`, `shopping`, `android`).
+
+---
 
 ### 🌐 Acción de Peticiones HTTP y Webhooks (`HTTP_REQUEST`)
 * **Integración Web & API:** Implementamos la nueva acción `HTTP_REQUEST` con la estrategia `HttpRequestStrategy`. Soporta métodos HTTP clave (`GET`, `POST`, `PUT`, `DELETE`, `PATCH`), cabeceras personalizadas en formato `Clave: Valor`, cuerpo de petición dinámico con soporte para `{resultado}` / `${input}`, y tiempo de espera configurable.

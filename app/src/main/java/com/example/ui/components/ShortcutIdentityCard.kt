@@ -41,6 +41,12 @@ fun ShortcutIdentityCard(
     onScheduleTimeChange: (String) -> Unit = {},
     triggerScheduleDays: String = "DAILY",
     onScheduleDaysChange: (String) -> Unit = {},
+    isNotificationTriggerEnabled: Boolean = false,
+    onNotificationTriggerEnabledChange: (Boolean) -> Unit = {},
+    triggerNotificationApp: String = "",
+    onNotificationAppChange: (String) -> Unit = {},
+    triggerNotificationKeyword: String = "",
+    onNotificationKeywordChange: (String) -> Unit = {},
     colorPalette: List<String>,
     iconPalette: List<String>
 ) {
@@ -133,6 +139,16 @@ fun ShortcutIdentityCard(
                 onScheduleTimeChange = onScheduleTimeChange,
                 triggerScheduleDays = triggerScheduleDays,
                 onScheduleDaysChange = onScheduleDaysChange
+            )
+
+            // Notification Trigger Section
+            NotificationTriggerSection(
+                isNotificationTriggerEnabled = isNotificationTriggerEnabled,
+                onNotificationTriggerEnabledChange = onNotificationTriggerEnabledChange,
+                triggerNotificationApp = triggerNotificationApp,
+                onNotificationAppChange = onNotificationAppChange,
+                triggerNotificationKeyword = triggerNotificationKeyword,
+                onNotificationKeywordChange = onNotificationKeywordChange
             )
         }
     }

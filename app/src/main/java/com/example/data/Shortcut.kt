@@ -22,5 +22,8 @@ data class Shortcut(
     val triggerHeadphonesType: String? = null, // "CONNECTED", "DISCONNECTED"
     val isScheduleTriggerEnabled: Boolean = false,
     val triggerScheduleTime: String? = null, // "08:30"
-    val triggerScheduleDays: String? = null // "DAILY", "MON,TUE,WED,THU,FRI", etc.
+    val triggerScheduleDays: String? = null, // "DAILY", "MON,TUE,WED,THU,FRI", etc.
+    val isNotificationTriggerEnabled: Boolean = false,
+    val triggerNotificationApp: String? = null, // package name or ""
+    val triggerNotificationKeyword: String? = null // search keyword or ""
 )
